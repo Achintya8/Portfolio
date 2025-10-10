@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home">
+        <p class="intro-text">Hi, I'm </p>
+        <h1>Achintya K</h1>
+        <p class="tagline">I build exceptional digital experiences that live on the web.</p>
+        <button class="cta-button" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">
+            View My Work
+        </button>
+        <div class="scroll-indicator">↓</div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Hello! I'm a passionate developer who enjoys creating things that live on the internet. My interest in web development started back in 2020 when I decided to try building my first website.</p>
+                <p style="margin-top: 1rem;">Fast-forward to today, and I've had the privilege of working on various projects that have helped me grow as a developer. My main focus these days is building accessible, inclusive products and digital experiences.</p>
+            </div>
+            <div class="profile-card">
+                <div class="profile-image-container">
+                    <img src="profile.jpg" alt="Your Name" class="profile-image">
+                </div>
+                <h3 style="color: var(--accent-blue); margin-bottom: 1rem;">Quick Facts</h3>
+                <p>📍 Location: Bangalore, India</p>
+                <p>💼 Previous Experience: Analyst</p>
+                <p>🎓 Currently pursuing: MCA</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2>Education</h2>
+        <div class="timeline-item">
+            <h3>MCA</h3>
+            <p class="date">2025 - Present</p>
+            <p>RV College of Engineering</p>
+            <p>Relevant Coursework: Data Structures, Algorithms, Database Management, Web Development, Machine Learning</p>
+        </div>
+        <div class="timeline-item">
+            <h3>BCA</h3>
+            <p class="date">2021 - 2024</p>
+            <p>St Joseph's College</p>
+            <p>Specialized in Data Science</p>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="timeline-item">
+            <h3>Analyst</h3>
+            <p class="date">Nov 2024 - Oct 2025</p>
+            <p><strong>Kantar</strong></p>
+            <p>Led development of multiple web applications using modern frameworks. Collaborated with cross-functional teams to deliver high-quality software solutions.</p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Frontend</h3>
+                <div>
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">CSS3</span>
+                    <span class="skill-tag">JavaScript</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Backend</h3>
+                <div>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">REST API</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Database</h3>
+                <div>
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">MySQL</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>DevOps & Tools</h3>
+                <div>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">AWS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="projects-section-header">
+            <h2>Featured Projects</h2>
+        </div>
+        <div class="projects-wrapper">
+            <div class="projects-container">
+                <!-- Project 1 -->
+                <div class="project-slide active">
+                    <div class="project-content">
+                        <div class="project-visual">
+                            <div class="project-number">01</div>
+                        </div>
+                        <div class="project-info">
+                            <p class="project-category">Full Stack Development</p>
+                            <h3>E-Commerce Platform</h3>
+                            <p class="project-description">
+                                A comprehensive e-commerce solution built from scratch with modern technologies. 
+                                Features secure payments, real-time inventory, and an intuitive admin dashboard.
+                            </p>
+                            <div class="project-features">
+                                <ul>
+                                    <li>Secure authentication & authorization</li>
+                                    <li>Real-time inventory management</li>
+                                    <li>Integrated Stripe payment gateway</li>
+                                    <li>Responsive admin dashboard</li>
+                                </ul>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-badge">React</span>
+                                <span class="tech-badge">Node.js</span>
+                                <span class="tech-badge">MongoDB</span>
+                                <span class="tech-badge">Stripe</span>
+                                <span class="tech-badge">Redux</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">View Demo</a>
+                                <a href="#" class="project-link">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-slide">
+                    <div class="project-content">
+                        <div class="project-visual">
+                            <div class="project-number">02</div>
+                        </div>
+                        <div class="project-info">
+                            <p class="project-category">Collaboration Tool</p>
+                            <h3>Task Management App</h3>
+                            <p class="project-description">
+                                A real-time collaborative workspace for teams to manage projects efficiently. 
+                                Built with live updates and seamless team coordination features.
+                            </p>
+                            <div class="project-features">
+                                <ul>
+                                    <li>Real-time collaboration with WebSockets</li>
+                                    <li>Drag-and-drop task organization</li>
+                                    <li>Team notifications and assignments</li>
+                                    <li>Progress tracking analytics</li>
+                                </ul>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-badge">Vue.js</span>
+                                <span class="tech-badge">Firebase</span>
+                                <span class="tech-badge">Tailwind</span>
+                                <span class="tech-badge">WebSockets</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">View Demo</a>
+                                <a href="#" class="project-link">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-slide">
+                    <div class="project-content">
+                        <div class="project-visual">
+                            <div class="project-number">03</div>
+                        </div>
+                        <div class="project-info">
+                            <p class="project-category">Data Visualization</p>
+                            <h3>Weather Dashboard</h3>
+                            <p class="project-description">
+                                An interactive weather application featuring real-time data, forecasts, 
+                                and beautiful visualizations powered by multiple weather APIs.
+                            </p>
+                            <div class="project-features">
+                                <ul>
+                                    <li>Real-time weather data for any location</li>
+                                    <li>7-day detailed forecast</li>
+                                    <li>Interactive charts and graphs</li>
+                                    <li>Geolocation support</li>
+                                </ul>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-badge">JavaScript</span>
+                                <span class="tech-badge">Weather API</span>
+                                <span class="tech-badge">Chart.js</span>
+                                <span class="tech-badge">CSS3</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">View Demo</a>
+                                <a href="#" class="project-link">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-slide">
+                    <div class="project-content">
+                        <div class="project-visual">
+                            <div class="project-number">04</div>
+                        </div>
+                        <div class="project-info">
+                            <p class="project-category">Content Management</p>
+                            <h3>Portfolio CMS</h3>
+                            <p class="project-description">
+                                A modern headless CMS specifically designed for developer portfolios. 
+                                Features a powerful GraphQL API and real-time preview capabilities.
+                            </p>
+                            <div class="project-features">
+                                <ul>
+                                    <li>Headless CMS architecture</li>
+                                    <li>GraphQL API for data fetching</li>
+                                    <li>Real-time content preview</li>
+                                    <li>SEO optimization tools</li>
+                                </ul>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-badge">Next.js</span>
+                                <span class="tech-badge">Sanity CMS</span>
+                                <span class="tech-badge">GraphQL</span>
+                                <span class="tech-badge">TypeScript</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">View Demo</a>
+                                <a href="#" class="project-link">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Navigation Dots -->
+            <div class="project-nav">
+                <div class="project-nav-dot active" onclick="goToProject(0)"></div>
+                <div class="project-nav-dot" onclick="goToProject(1)"></div>
+                <div class="project-nav-dot" onclick="goToProject(2)"></div>
+                <div class="project-nav-dot" onclick="goToProject(3)"></div>
+            </div>
+
+            <!-- Scroll Hint -->
+            <div class="scroll-hint">
+                <span>Scroll to explore</span>
+                <span>→</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-content">
+            <p>I'm currently looking for new opportunities. Whether you have a question or just want to say hi, feel free to reach out!</p>
+            <div class="contact-links">
+                <a href="mailto:achintyak48@gmail.com" class="contact-link">Email Me</a>
+                <a href="https://www.linkedin.com/in/achintya-k" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/Achintya8" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Achintya K.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
