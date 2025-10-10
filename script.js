@@ -30,7 +30,7 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Intersection Observer for animations
+// Intersection Observer for timeline and skills animations
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -100px 0px'
@@ -48,141 +48,34 @@ document.querySelectorAll('.timeline-item, .skill-category').forEach(el => {
     observer.observe(el);
 });
 
-// Horizontal Project Scroll
-let currentProject = 0;
-const totalProjects = 4;
-let isScrolling = false;
-let startX = 0;
-
-const projectsContainer = document.querySelector('.projects-container');
-const projectSlides = document.querySelectorAll('.project-slide');
-const projectDots = document.querySelectorAll('.project-nav-dot');
-const scrollHint = document.querySelector('.scroll-hint');
-const projectsHeader = document.querySelector('.projects-section-header');
-
-function updateProjectView(index) {
-    if (index < 0 || index >= totalProjects) return;
-
-    currentProject = index;
-    const offset = -index * 100;
-    projectsContainer.style.transform = `translateX(${offset}vw)`;
-
-    // Update active states
-    projectSlides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-    });
-
-    projectDots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-    });
-
-    // Hide scroll hint after first interaction
-    if (index > 0) {
-        scrollHint.classList.add('hidden');
-    }
-}
-
-function goToProject(index) {
-    if (!isScrolling) {
-        updateProjectView(index);
-    }
-}
-
-// Wheel/scroll event for project navigation
-let scrollTimeout;
-document.querySelector('.projects-wrapper').addEventListener('wheel', (e) => {
-    e.preventDefault();
-
-    if (isScrolling) return;
-
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-        if (e.deltaY > 0 || e.deltaX > 0) {
-            // Scroll down/right - next project
-            if (currentProject < totalProjects - 1) {
-                isScrolling = true;
-                updateProjectView(currentProject + 1);
-                setTimeout(() => { isScrolling = false; }, 800);
-            } else {
-                // Exit projects section, scroll to next section
-                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-            }
-        } else {
-            // Scroll up/left - previous project
-            if (currentProject > 0) {
-                isScrolling = true;
-                updateProjectView(currentProject - 1);
-                setTimeout(() => { isScrolling = false; }, 800);
-            } else {
-                // Exit projects section, scroll to previous section
-                document.getElementById('skills').scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-    }, 50);
-}, { passive: false });
-
-// Touch/swipe support for mobile
-projectsContainer.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-});
-
-projectsContainer.addEventListener('touchmove', (e) => {
-    if (!startX) return;
-
-    const currentX = e.touches[0].clientX;
-    const diff = startX - currentX;
-
-    if (Math.abs(diff) > 50 && !isScrolling) {
-        isScrolling = true;
-        if (diff > 0 && currentProject < totalProjects - 1) {
-            updateProjectView(currentProject + 1);
-        } else if (diff < 0 && currentProject > 0) {
-            updateProjectView(currentProject - 1);
-        }
-        setTimeout(() => { isScrolling = false; }, 800);
-        startX = 0;
-    }
-});
-
-projectsContainer.addEventListener('touchend', () => {
-    startX = 0;
-});
-
-// Keyboard navigation for projects
-document.addEventListener('keydown', (e) => {
-    // Check if we're in the projects section
-    const projectsSection = document.getElementById('projects');
-    const rect = projectsSection.getBoundingClientRect();
-    const isInView = rect.top < window.innerHeight && rect.bottom >= 0;
-
-    if (!isInView || isScrolling) return;
-
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        e.preventDefault();
-        if (currentProject < totalProjects - 1) {
-            isScrolling = true;
-            updateProjectView(currentProject + 1);
-            setTimeout(() => { isScrolling = false; }, 800);
-        }
-    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        if (currentProject > 0) {
-            isScrolling = true;
-            updateProjectView(currentProject - 1);
-            setTimeout(() => { isScrolling = false; }, 800);
-        }
-    }
-});
-
-// Show/hide projects header based on scroll
-const projectsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+// Project cards fade-in animation with stagger
+const projectObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-            projectsHeader.classList.add('visible');
-        } else {
-            projectsHeader.classList.remove('visible');
+            // Add a slight delay for each card for staggered effect
+            setTimeout(() => {
+                entry.target.classList.add('visible');
+            }, index * 100);
         }
     });
-}, { threshold: 0.1 });
+}, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+});
 
-projectsObserver.observe(document.querySelector('.projects-wrapper'));
+document.querySelectorAll('.project-card').forEach(card => {
+    projectObserver.observe(card);
+});
+
+// Hide scroll indicator after scrolling
+let hasScrolled = false;
+window.addEventListener('scroll', () => {
+    if (!hasScrolled && window.scrollY > 100) {
+        hasScrolled = true;
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        if (scrollIndicator) {
+            scrollIndicator.style.opacity = '0';
+            scrollIndicator.style.transition = 'opacity 0.5s ease';
+        }
+    }
+});
