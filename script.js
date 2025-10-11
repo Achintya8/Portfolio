@@ -79,3 +79,13 @@ window.addEventListener('scroll', () => {
         }
     }
 });
+
+// Smooth scroll for scroll indicator
+const scrollIndicator = document.querySelector('.scroll-indicator');
+if (scrollIndicator) {
+    scrollIndicator.addEventListener('click', () => {
+        document.getElementById('about').scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+}
