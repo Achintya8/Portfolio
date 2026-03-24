@@ -135,6 +135,25 @@ nav a.active {
     color: var(--accent-primary);
 }
 
+.nav-resume-btn {
+    border: 1px solid var(--accent-primary);
+    border-radius: 4px;
+    padding: 0.5rem 1.2rem !important;
+    /* Override standard nav padding */
+    color: var(--accent-primary) !important;
+    transition: all 0.3s ease;
+}
+
+.nav-resume-btn:hover {
+    background: rgba(217, 70, 239, 0.1);
+    box-shadow: 0 0 15px rgba(217, 70, 239, 0.3);
+}
+
+.nav-resume-btn::after {
+    display: none;
+    /* Remove underline effect for button */
+}
+
 /* Sections */
 section {
     padding: 5rem 2rem 3rem;
