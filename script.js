@@ -142,34 +142,7 @@ init();
 animateParticles();
 
 
-// --- 3D Tilt Effect ---
-const tiltElements = document.querySelectorAll('.project-card, .skill-category');
-
-tiltElements.forEach(el => {
-    el.addEventListener('mousemove', handleTilt);
-    el.addEventListener('mouseleave', resetTilt);
-});
-
-function handleTilt(e) {
-    const el = this;
-    const rect = el.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-
-    const rotateX = ((y - centerY) / centerY) * -10; // Max tilt deg
-    const rotateY = ((x - centerX) / centerX) * 10;
-
-    el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-    el.style.zIndex = '10';
-}
-
-function resetTilt() {
-    this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-    this.style.zIndex = '1';
-}
+// --- 3D Tilt Effect Removed as per request ---
 
 
 // --- Typewriter Effect ---
@@ -201,12 +174,36 @@ io.observe(document.querySelector('#home'));
 
 
 // --- Existing Logic Preserved (Smooth Scroll, Active Nav) ---
+// --- Existing Logic Preserved (Smooth Scroll, Active Nav) ---
 document.querySelectorAll('nav a').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
         const targetId = this.getAttribute('href');
-        document.querySelector(targetId).scrollIntoView({
-            behavior: 'smooth'
-        });
+
+        // Only prevent default for internal links
+        if (targetId.startsWith('#')) {
+            e.preventDefault();
+            document.querySelector(targetId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
     });
+});
+
+// --- Scroll Animation for Project Cards ---
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+};
+
+const projectObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            projectObserver.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.project-card').forEach(card => {
+    projectObserver.observe(card);
 });
