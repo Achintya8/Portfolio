@@ -189,21 +189,17 @@ document.querySelectorAll('nav a').forEach(anchor => {
     });
 });
 
-// --- Scroll Animation for Project Cards ---
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px"
-};
-
-const projectObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            projectObserver.unobserve(entry.target);
-        }
+// --- Initialise ScrollStack for Projects section ---
+const stackContainer = document.getElementById('projects-scroll-stack');
+if (stackContainer && typeof ScrollStack !== 'undefined') {
+    new ScrollStack(stackContainer, {
+        itemDistance:      120,   // gap between cards while scrolling through
+        itemScale:         0.04,  // how much each stacked card shrinks
+        itemStackDistance: 28,    // vertical offset between stacked cards
+        stackPosition:     '18%', // sticky pin position (% of viewport height)
+        scaleEndPosition:  '8%',  // where scaling completes
+        baseScale:         0.87,  // scale of the first (deepest) stacked card
+        rotationAmount:    0,     // no rotation
+        blurAmount:        0,     // no blur
     });
-}, observerOptions);
-
-document.querySelectorAll('.project-card').forEach(card => {
-    projectObserver.observe(card);
-});
+}

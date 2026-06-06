@@ -7,6 +7,7 @@
     <title>Achintya K - Portfolio</title>
     <meta name="description" content="Full Stack Developer specializing in modern web technologies">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.14/dist/lenis.css">
 </head>
 
 <body>
@@ -130,153 +131,152 @@
     <!-- Projects Section -->
     <section id="projects">
         <h2>Featured Projects</h2>
-        <div class="projects-grid">
-            <!-- Project 1 -->
 
+        <!-- ScrollStack wrapper: cards stack as you scroll -->
+        <div id="projects-scroll-stack" class="projects-stack-container">
 
-            <!-- Project 2 -->
-            <div class="project-card">
-                <div class="project-visual">
-                    <img src="smart_queue.png" alt="QR Based Queue Management" class="project-image">
-                </div>
-                <div class="project-info">
-
-                    <h3>QR Based Queue-Management System</h3>
-                    <p class="project-date"
-                        style="color: var(--accent-tertiary); font-size: 0.9rem; margin-bottom: 1rem; font-family: monospace;">
-                        October 2025</p>
-                    <p class="project-description">
-                        Designed and developed a QR-based queue management system to streamline and digitize customer
-                        flow management. Implemented functionality for QR code generation and scanning to enable users
-                        to join queues remotely, reducing physical waiting time. Built backend logic for real-time queue
-                        updates, token generation, and status tracking, ensuring efficient handling of users. Integrated
-                        a database for secure data storage and retrieval, improving overall system efficiency and user
-                        experience.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-badge">Node.js</span>
-                        <span class="tech-badge">PostgreSQL</span>
-                        <span class="tech-badge">React</span>
-                        <span class="tech-badge">QR Generation</span>
+            <!-- Card 1: QR Queue Management -->
+            <div class="scroll-stack-card project-card-stack">
+                <div class="stack-card-inner">
+                    <div class="stack-card-image">
+                        <img src="smart_queue.png" alt="QR Based Queue Management">
                     </div>
-                    <div class="project-links">
-                        <a href="https://github.com/Achintya8/Queue_Management" class="project-link">Project Link</a>
+                    <div class="stack-card-content">
+                        <p class="project-category">Backend &middot; Full Stack</p>
+                        <h3>QR Based Queue-Management System</h3>
+                        <p class="stack-card-date">October 2025</p>
+                        <p class="project-description">
+                            Designed and developed a QR-based queue management system to streamline and digitize
+                            customer flow. Implemented QR generation &amp; scanning so users can join queues remotely,
+                            cutting physical wait times. Built real-time token tracking with PostgreSQL and a React
+                            frontend.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Node.js</span>
+                            <span class="tech-badge">PostgreSQL</span>
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">QR Generation</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Achintya8/Queue_Management" target="_blank" class="project-link">GitHub &rarr;</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 3 -->
-            <div class="project-card">
-                <div class="project-visual">
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=600&fit=crop"
-                        alt="Attendance Management" class="project-image">
-                </div>
-                <div class="project-info">
-
-                    <h3>Attendance Management System</h3>
-                    <p class="project-date"
-                        style="color: var(--accent-tertiary); font-size: 0.9rem; margin-bottom: 1rem; font-family: monospace;">
-                        December 2025 to January 2026</p>
-                    <p class="project-description">
-                        Designed and developed a database-driven attendance management system to streamline student
-                        tracking and reporting. Implemented backend logic for student registration, attendance
-                        recording, and report generation, and integrated an SQL database for efficient data storage and
-                        retrieval. Improved system accuracy and reduced manual effort, with a modular backend design and
-                        exposure to RESTful API development.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-badge">Spring Boot</span>
-                        <span class="tech-badge">React</span>
-                        <span class="tech-badge">MySQL</span>
-                        <span class="tech-badge">REST API</span>
+            <!-- Card 2: Attendance Management -->
+            <div class="scroll-stack-card project-card-stack">
+                <div class="stack-card-inner">
+                    <div class="stack-card-image">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=600&fit=crop"
+                            alt="Attendance Management">
                     </div>
-                    <div class="project-links">
-                        <a href="https://github.com/Achintya8/Attendance_Management" target="_blank"
-                            class="project-link">Project Link</a>
+                    <div class="stack-card-content">
+                        <p class="project-category">Backend &middot; REST API</p>
+                        <h3>Attendance Management System</h3>
+                        <p class="stack-card-date">Dec 2025 &ndash; Jan 2026</p>
+                        <p class="project-description">
+                            Database-driven system streamlining student tracking and reporting. Spring Boot REST API
+                            handles registration, attendance recording and report generation against a MySQL backend.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Spring Boot</span>
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">MySQL</span>
+                            <span class="tech-badge">REST API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Achintya8/Attendance_Management" target="_blank" class="project-link">GitHub &rarr;</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card">
-                <div class="project-visual">
-                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop"
-                        alt="Network Routing" class="project-image">
-                </div>
-                <div class="project-info">
-
-                    <h3>Trust-Based Routing Algorithm in Computer Networks</h3>
-                    <p class="project-date"
-                        style="color: var(--accent-tertiary); font-size: 0.9rem; margin-bottom: 1rem; font-family: monospace;">
-                        December 2025 - January 2026</p>
-                    <p class="project-description">
-                        Designed and implemented a trust-based routing algorithm to enhance secure and efficient data
-                        transmission across networks. Applied networking concepts such as TCP/IP and routing logic to
-                        identify and avoid unreliable nodes. Simulated network behavior and evaluated performance using
-                        metrics like path cost, reliability, and efficiency, improving route selection through
-                        algorithmic optimization.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-badge">TCP/IP</span>
-                        <span class="tech-badge">Algorithms</span>
-                        <span class="tech-badge">Network Simulation</span>
+            <!-- Card 3: Trust-Based Routing -->
+            <div class="scroll-stack-card project-card-stack">
+                <div class="stack-card-inner">
+                    <div class="stack-card-image">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop"
+                            alt="Network Routing">
                     </div>
-                    <div class="project-links">
-                        <a href="https://github.com/Achintya8/Intelligent-routing" class="project-link">Project Link</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 4 -->
-            <div class="project-card">
-                <div class="project-visual">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop"
-                        alt="IPL Dashboard" class="project-image">
-                </div>
-                <div class="project-info">
-                    <p class="project-category">Data Visualization</p>
-                    <h3>IPL Power BI Dashboard</h3>
-                    <p class="project-description">
-                        An interactive dashboard providing deep insights into IPL matches. Visualizes team performance,
-                        player statistics, and match trends using advanced Power BI features and DAX measures.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-badge">Power BI</span>
-                        <span class="tech-badge">DAX</span>
-                        <span class="tech-badge">Data Analysis</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/Achintya8/IPL-Analysis-Dashboard" class="project-link">Project
-                            Link</a>
+                    <div class="stack-card-content">
+                        <p class="project-category">Algorithms &middot; Networking</p>
+                        <h3>Trust-Based Routing Algorithm</h3>
+                        <p class="stack-card-date">Dec 2025 &ndash; Jan 2026</p>
+                        <p class="project-description">
+                            Designed and implemented a trust-based routing algorithm for secure data transmission.
+                            Uses TCP/IP concepts to identify and avoid unreliable nodes, evaluated across path cost,
+                            reliability, and efficiency metrics.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">TCP/IP</span>
+                            <span class="tech-badge">Algorithms</span>
+                            <span class="tech-badge">Network Simulation</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Achintya8/Intelligent-routing" target="_blank" class="project-link">GitHub &rarr;</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card">
-                <div class="project-visual">
-                    <img src="lumbar_spine.png" alt="Lumbar Spine Diagnosis" class="project-image">
-                </div>
-                <div class="project-info">
-                    <p class="project-category">Image Processing</p>
-                    <h3>Lumbar Spine Disease Diagnosis</h3>
-                    <p class="project-description">
-                        Developed an automated detection system for lumbar spine herniations and bulges using the YOLOv8
-                        model, achieving 78% accuracy. Pre-processed DICOM images and manually labeled data, aiming for
-                        clinical decision support.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">Deep Learning</span>
-                        <span class="tech-badge">CNN</span>
-                        <span class="tech-badge">YOLOv8</span>
+            <!-- Card 4: IPL Dashboard -->
+            <div class="scroll-stack-card project-card-stack">
+                <div class="stack-card-inner">
+                    <div class="stack-card-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop"
+                            alt="IPL Dashboard">
                     </div>
-                    <div class="project-links">
-                        <a href="https://github.com/Achintya8/Lumbar-Spine-Diagnosis" class="project-link">Project
-                            Link</a>
+                    <div class="stack-card-content">
+                        <p class="project-category">Data Visualization</p>
+                        <h3>IPL Power BI Dashboard</h3>
+                        <p class="stack-card-date">2025</p>
+                        <p class="project-description">
+                            Interactive dashboard providing deep insights into IPL matches. Visualizes team performance,
+                            player statistics and match trends using advanced Power BI features and custom DAX measures.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Power BI</span>
+                            <span class="tech-badge">DAX</span>
+                            <span class="tech-badge">Data Analysis</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Achintya8/IPL-Analysis-Dashboard" target="_blank" class="project-link">GitHub &rarr;</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 5 -->
+            <!-- Card 5: Lumbar Spine Diagnosis -->
+            <div class="scroll-stack-card project-card-stack">
+                <div class="stack-card-inner">
+                    <div class="stack-card-image">
+                        <img src="lumbar_spine.png" alt="Lumbar Spine Diagnosis">
+                    </div>
+                    <div class="stack-card-content">
+                        <p class="project-category">Image Processing &middot; Deep Learning</p>
+                        <h3>Lumbar Spine Disease Diagnosis</h3>
+                        <p class="stack-card-date">2025</p>
+                        <p class="project-description">
+                            Automated detection system for lumbar spine herniations and bulges using YOLOv8,
+                            achieving 78% accuracy. Pre-processed DICOM images with manual labelling for
+                            clinical decision support.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Deep Learning</span>
+                            <span class="tech-badge">CNN</span>
+                            <span class="tech-badge">YOLOv8</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Achintya8/Lumbar-Spine-Diagnosis" target="_blank" class="project-link">GitHub &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Required sentinel element -->
+            <div class="scroll-stack-end"></div>
         </div>
 
     </section>
@@ -301,6 +301,8 @@
         <p>&copy; 2025 Achintya K. Built with HTML, CSS & JavaScript</p>
     </footer>
 
+    <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+    <script src="scroll-stack.js"></script>
     <script src="script.js"></script>
 </body>
 
