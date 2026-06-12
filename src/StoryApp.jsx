@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import Lenis from 'lenis'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './story.css'
 
 import Preloader         from './components/Preloader'
@@ -14,17 +16,35 @@ import StorySkills   from './components/story/StorySkills'
 import StoryProjects from './components/story/StoryProjects'
 import StoryContact  from './components/story/StoryContact'
 
+gsap.registerPlugin(ScrollTrigger)
+
 export default function StoryApp() {
   const [loaded, setLoaded] = useState(false)
 
-  // Init Lenis smooth scroll after preloader
+  // Init Lenis smooth scroll and connect with GSAP ScrollTrigger
   useEffect(() => {
     if (!loaded) return
-    const lenis = new Lenis({ duration: 1.1, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) })
-    let raf
-    const loop = time => { lenis.raf(time); raf = requestAnimationFrame(loop) }
-    raf = requestAnimationFrame(loop)
-    return () => { lenis.destroy(); cancelAnimationFrame(raf) }
+    
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    })
+
+    // Connect Lenis to ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update)
+
+    // Hook GSAP ticker to Lenis
+    const updateScroll = time => {
+      lenis.raf(time * 1000)
+    }
+    gsap.ticker.add(updateScroll)
+    gsap.ticker.lagSmoothing(0)
+
+    return () => {
+      lenis.destroy()
+      gsap.ticker.remove(updateScroll)
+    }
   }, [loaded])
 
   return (
@@ -48,14 +68,16 @@ export default function StoryApp() {
         </a>
       </header>
 
-      <main>
-        <StoryHome />
-        <StoryAbout />
-        <StoryJourney />
-        <StorySkills />
-        <StoryProjects />
-        <StoryContact />
-      </main>
+      {loaded && (
+        <main>
+          <StoryHome />
+          <StoryAbout />
+          <StoryJourney />
+          <StorySkills />
+          <StoryProjects />
+          <StoryContact />
+        </main>
+      )}
 
       <footer>
         <span>© 2026 Achintya K. All rights reserved.</span>

@@ -1,19 +1,22 @@
 import { useEffect } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default function ReadingProgressBar() {
   useEffect(() => {
-    const bar = document.getElementById('reading-progress')
-    if (!bar) return
-
-    const update = () => {
-      const scrollTop = window.scrollY
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight
-      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
-      bar.style.width = pct + '%'
-    }
-
-    window.addEventListener('scroll', update, { passive: true })
-    return () => window.removeEventListener('scroll', update)
+    const tween = gsap.to('#reading-progress', {
+      width: '100%',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: 'body',
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.1, // Slight lag for smooth progress update
+      }
+    })
+    return () => tween.scrollTrigger?.kill()
   }, [])
 
   return <div id="reading-progress" />

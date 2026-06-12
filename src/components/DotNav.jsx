@@ -27,7 +27,7 @@ export default function DotNav() {
   }, [])
 
   return (
-    <nav id="dot-nav" ref={navRef} aria-label="Section navigation">
+    <div id="dot-nav" ref={navRef} aria-label="Section navigation">
       {SECTIONS.map(s => (
         <button
           key={s.id}
@@ -38,6 +38,6 @@ export default function DotNav() {
           onClick={() => document.getElementById(s.id)?.scrollIntoView({ behavior: 'smooth' })}
         />
       ))}
-    </nav>
+    </div>
   )
 }
