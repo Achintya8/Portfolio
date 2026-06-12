@@ -1,46 +1,36 @@
-import ChapterCover from '../ChapterCover'
-import { useReveal } from '../../hooks/useReveal'
+const ROW1 = ['Node.js','React','Java','Spring Boot','Docker','PostgreSQL','AWS','MongoDB']
+const ROW2 = ['HTML5','CSS3','JavaScript','MySQL','Python','YOLOv8','Power BI','Git']
 
-const SKILLS = [
-  { title: 'Frontend',        tags: ['HTML5', 'CSS3', 'JavaScript', 'React'] },
-  { title: 'Backend',         tags: ['Java', 'Spring Boot', 'Node.js', 'REST API'] },
-  { title: 'Database',        tags: ['MongoDB', 'MySQL', 'PostgreSQL'] },
-  { title: 'DevOps & Tools',  tags: ['Docker', 'Git', 'AWS', 'Power BI'] },
-]
+function MarqueeRow({ items, reverse }) {
+  const doubled = [...items, ...items]
+  return (
+    <div className="marquee-outer">
+      <div className={`marquee-track ${reverse ? 'reverse' : ''}`}>
+        {doubled.map((item, i) => (
+          <span key={i} className={`marquee-item ${i % 3 === 2 ? 'dim' : ''}`}>
+            <span className="marquee-dot" />
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export default function StorySkills() {
-  useReveal('#skills')
-
   return (
-    <>
-      <ChapterCover
-        num="Chapter IV"
-        title="Tools of the Trade"
-        subtitle="The instruments that shape the craft."
-        ambient="ch-skills"
-      />
-
-      <section id="skills" className="story-section">
-        <span className="story-label reveal">Skills & Technologies</span>
-        <div className="skills-chapters">
-          {SKILLS.map(({ title, tags }, i) => (
-            <div key={title} className={`skill-block reveal delay-${i + 1}`}>
-              <p className="skill-block-title">{title}</p>
-              <div className="skill-pills">
-                {tags.map(tag => (
-                  <span key={tag} className="skill-pill">{tag}</span>
-                ))}
-              </div>
-            </div>
-          ))}
+    <section id="skills">
+      <div className="skills-header s-wrap" style={{ paddingBottom: '2rem' }}>
+        <span className="s-num">03</span>
+        <div className="s-label"><span>Skills</span></div>
+        <div className="split-wrap">
+          <p className="about-display split-inner" style={{ marginBottom: '0' }}>
+            Tools of the Trade.
+          </p>
         </div>
-      </section>
-
-      <div className="ornament reveal">
-        <div className="ornament-line" />
-        <span className="ornament-glyph">✦</span>
-        <div className="ornament-line" />
       </div>
-    </>
+      <MarqueeRow items={ROW1} />
+      <MarqueeRow items={ROW2} reverse />
+    </section>
   )
 }

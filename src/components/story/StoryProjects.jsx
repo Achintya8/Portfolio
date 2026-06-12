@@ -1,117 +1,108 @@
-import ChapterCover from '../ChapterCover'
-import ScrollStack, { ScrollStackItem } from '../ScrollStack/ScrollStack'
+import { useEffect, useRef, useState } from 'react'
 
 const PROJECTS = [
   {
-    id: 'queue',
-    image: '/smart_queue.png',
-    category: 'Backend · Full Stack',
-    title: 'QR Based Queue-Management System',
-    date: 'October 2025',
-    description:
-      'Designed and developed a QR-based queue management system to streamline and digitize customer flow. Implemented QR generation & scanning so users can join queues remotely, cutting physical wait times. Built real-time token tracking with PostgreSQL and a React frontend.',
-    tech: ['Node.js', 'PostgreSQL', 'React', 'QR Generation'],
-    link: 'https://github.com/Achintya8/Queue_Management',
+    id:'queue', num:'01',
+    title:'QR Queue Management',
+    cat:'Backend · Full Stack',
+    tech:['Node.js','PostgreSQL','React'],
+    link:'https://github.com/Achintya8/Queue_Management',
+    image:'/smart_queue.png',
   },
   {
-    id: 'attendance',
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=600&fit=crop',
-    category: 'Backend · REST API',
-    title: 'Attendance Management System',
-    date: 'Dec 2025 – Jan 2026',
-    description:
-      'Database-driven system streamlining student tracking and reporting. Spring Boot REST API handles registration, attendance recording and report generation against a MySQL backend.',
-    tech: ['Spring Boot', 'React', 'MySQL', 'REST API'],
-    link: 'https://github.com/Achintya8/Attendance_Management',
+    id:'attendance', num:'02',
+    title:'Attendance Management System',
+    cat:'Backend · REST API',
+    tech:['Spring Boot','MySQL','React'],
+    link:'https://github.com/Achintya8/Attendance_Management',
+    image:'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=380&fit=crop',
   },
   {
-    id: 'routing',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop',
-    category: 'Algorithms · Networking',
-    title: 'Trust-Based Routing Algorithm',
-    date: 'Dec 2025 – Jan 2026',
-    description:
-      'Designed and implemented a trust-based routing algorithm for secure data transmission. Uses TCP/IP concepts to identify and avoid unreliable nodes, evaluated across path cost, reliability, and efficiency metrics.',
-    tech: ['TCP/IP', 'Algorithms', 'Network Simulation'],
-    link: 'https://github.com/Achintya8/Intelligent-routing',
+    id:'routing', num:'03',
+    title:'Trust-Based Routing Algorithm',
+    cat:'Algorithms · Networking',
+    tech:['TCP/IP','Algorithms'],
+    link:'https://github.com/Achintya8/Intelligent-routing',
+    image:'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=380&fit=crop',
   },
   {
-    id: 'ipl',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
-    category: 'Data Visualization',
-    title: 'IPL Power BI Dashboard',
-    date: '2025',
-    description:
-      'Interactive dashboard providing deep insights into IPL matches. Visualizes team performance, player statistics and match trends using advanced Power BI features and custom DAX measures.',
-    tech: ['Power BI', 'DAX', 'Data Analysis'],
-    link: 'https://github.com/Achintya8/IPL-Analysis-Dashboard',
+    id:'ipl', num:'04',
+    title:'IPL Power BI Dashboard',
+    cat:'Data Visualization',
+    tech:['Power BI','DAX'],
+    link:'https://github.com/Achintya8/IPL-Analysis-Dashboard',
+    image:'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=380&fit=crop',
   },
   {
-    id: 'lumbar',
-    image: '/lumbar_spine.png',
-    category: 'Image Processing · Deep Learning',
-    title: 'Lumbar Spine Disease Diagnosis',
-    date: '2025',
-    description:
-      'Automated detection system for lumbar spine herniations and bulges using YOLOv8, achieving 78% accuracy. Pre-processed DICOM images with manual labelling for clinical decision support.',
-    tech: ['Python', 'Deep Learning', 'CNN', 'YOLOv8'],
-    link: 'https://github.com/Achintya8/Lumbar-Spine-Diagnosis',
+    id:'lumbar', num:'05',
+    title:'Lumbar Spine Diagnosis',
+    cat:'Deep Learning · CV',
+    tech:['Python','YOLOv8','CNN'],
+    link:'https://github.com/Achintya8/Lumbar-Spine-Diagnosis',
+    image:'/lumbar_spine.png',
   },
 ]
 
 export default function StoryProjects() {
+  const ref = useRef(null)
+  const [preview, setPreview] = useState({ show: false, src: '', x: 0, y: 0 })
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        ref.current?.querySelectorAll('.fade-up').forEach(el => el.classList.add('up'))
+        obs.disconnect()
+      }
+    }, { threshold: 0.08 })
+    if (ref.current) obs.observe(ref.current)
+    return () => obs.disconnect()
+  }, [])
+
+  const handleMove = (e, src) => {
+    setPreview({ show: true, src, x: e.clientX + 24, y: e.clientY - 100 })
+  }
+
   return (
-    <>
-      <ChapterCover
-        num="Chapter V"
-        title="The Work"
-        subtitle="Stories told through code."
-        ambient="ch-projects"
-      />
-
-      <div id="projects" style={{ position: 'relative', zIndex: 1 }}>
-        <ScrollStack
-          useWindowScroll={true}
-          itemDistance={120}
-          itemScale={0.04}
-          itemStackDistance={28}
-          stackPosition="18%"
-          scaleEndPosition="8%"
-          baseScale={0.87}
-          rotationAmount={0}
-          blurAmount={0}
-        >
-          {PROJECTS.map(p => (
-            <ScrollStackItem key={p.id} itemClassName="story-project-card">
-              <div className="stack-card-inner">
-                <div className="stack-card-image">
-                  <img src={p.image} alt={p.title} />
-                </div>
-                <div className="stack-card-content">
-                  <p className="project-category">{p.category}</p>
-                  <h3>{p.title}</h3>
-                  <p className="stack-card-date">{p.date}</p>
-                  <p className="project-description">{p.description}</p>
-                  <div className="project-tech">
-                    {p.tech.map(t => <span key={t} className="tech-badge">{t}</span>)}
-                  </div>
-                  <div className="project-links">
-                    <a href={p.link} target="_blank" rel="noreferrer" className="project-link">
-                      GitHub →
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </ScrollStackItem>
-          ))}
-        </ScrollStack>
+    <section id="projects" ref={ref}>
+      <div className="s-wrap" style={{ paddingBottom: '2rem' }}>
+        <span className="s-num">04</span>
+        <div className="s-label fade-up"><span>Work</span></div>
+        <div className="split-wrap">
+          <p className="about-display split-inner">Selected Projects.</p>
+        </div>
       </div>
 
-      <div className="ornament">
-        <div className="ornament-line" />
-        <span className="ornament-glyph">✦</span>
-        <div className="ornament-line" />
+      <div className="projects-list" style={{ padding: '0 3rem 4rem' }}>
+        {PROJECTS.map((p, i) => (
+          <a
+            key={p.id}
+            href={p.link}
+            target="_blank"
+            rel="noreferrer"
+            className={`project-row fade-up d${i % 4 + 1}`}
+            onMouseMove={e => handleMove(e, p.image)}
+            onMouseLeave={() => setPreview(v => ({ ...v, show: false }))}
+          >
+            <span className="proj-num">{p.num}</span>
+            <div className="proj-info">
+              <div className="proj-title">{p.title}</div>
+              <div className="proj-cat">{p.cat}</div>
+            </div>
+            <div className="proj-tech">
+              {p.tech.map(t => <span key={t} className="proj-tag">{t}</span>)}
+            </div>
+            <span className="proj-arrow">↗</span>
+          </a>
+        ))}
       </div>
-    </>
+
+      {/* Hover image preview */}
+      <div
+        className={`proj-preview ${preview.show ? 'show' : ''}`}
+        style={{ left: preview.x, top: preview.y, transform: 'none' }}
+      >
+        <img src={preview.src} alt="" />
+      </div>
+    </section>
   )
 }

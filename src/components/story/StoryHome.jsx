@@ -1,58 +1,57 @@
 import { useEffect, useRef } from 'react'
-import { useReveal } from '../../hooks/useReveal'
-
-const FULL_TEXT = 'I build exceptional digital experiences that live on the web.'
 
 export default function StoryHome() {
-  const taglineRef = useRef(null)
-  useReveal('#prologue')
+  const secRef = useRef(null)
 
   useEffect(() => {
-    const el = taglineRef.current
-    if (!el) return
-    el.textContent = ''
-    let i = 0
-    let timeout
-
-    const type = () => {
-      if (i < FULL_TEXT.length) {
-        el.textContent += FULL_TEXT.charAt(i++)
-        timeout = setTimeout(type, 45)
-      }
-    }
-
-    const observer = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) { type(); observer.disconnect() }
-    })
-    const section = document.getElementById('prologue')
-    if (section) observer.observe(section)
-
-    return () => { clearTimeout(timeout); observer.disconnect() }
+    const splits = secRef.current?.querySelectorAll('.split-inner') ?? []
+    const fades  = secRef.current?.querySelectorAll('.fade-up') ?? []
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          splits.forEach(el => el.classList.add('up'))
+          fades.forEach(el  => el.classList.add('up'))
+          obs.disconnect()
+        }
+      })
+    }, { threshold: 0.1 })
+    if (secRef.current) obs.observe(secRef.current)
+    return () => obs.disconnect()
   }, [])
 
   return (
-    <section id="prologue">
-      <div className="prologue-inner">
-        <div className="prologue-text">
-          <span className="prologue-intro reveal">Hi, I'm</span>
-          <h1 className="prologue-name reveal delay-1">
-            Achintya <em>K</em>
-          </h1>
-          <p className="prologue-tagline reveal delay-2" ref={taglineRef} />
-          <button
-            className="prologue-cta reveal delay-3"
-            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            Read My Story ↓
-          </button>
+    <section id="hero" ref={secRef}>
+      {/* Top eyebrow row */}
+      <div className="hero-eyebrow">
+        <span className="hero-eyebrow-tag fade-up">Full Stack Developer</span>
+        <span className="hero-eyebrow-year fade-up">©&nbsp;2026</span>
+      </div>
+
+      {/* Giant name */}
+      <div>
+        <div className="split-wrap">
+          <h1 className="hero-title split-inner">ACHINTYA</h1>
         </div>
-        <div className="prologue-photo-wrap reveal delay-2">
-          <img className="prologue-photo" src="/profile.jpg" alt="Achintya K" />
+        <div className="split-wrap">
+          <h1 className="hero-title split-inner d1">
+            <span className="accent">K.</span>
+          </h1>
         </div>
       </div>
-      <div className="scroll-hint">
-        <span className="scroll-hint-arrow">↓</span>
-        <span>scroll to begin</span>
+
+      {/* Bottom bar */}
+      <div className="hero-foot">
+        <p className="hero-role fade-up d2">
+          Building exceptional digital experiences&nbsp;—&nbsp;
+          one line of code at a time.
+        </p>
+        <button
+          className="hero-scroll-btn fade-up d3"
+          onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+        >
+          Scroll
+          <span className="hero-scroll-circle">↓</span>
+        </button>
       </div>
     </section>
   )
